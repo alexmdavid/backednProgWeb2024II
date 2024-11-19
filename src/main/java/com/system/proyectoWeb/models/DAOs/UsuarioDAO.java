@@ -3,8 +3,14 @@ package com.system.proyectoWeb.models.DAOs;
 import com.system.proyectoWeb.models.DAOs.IDAOs.IUsuarioDAO;
 import com.system.proyectoWeb.models.entities.Usuario;
 import jakarta.persistence.EntityManager;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+
+@Repository
+@Transactional
 
 public class UsuarioDAO implements IUsuarioDAO {
     EntityManager entityManager;
