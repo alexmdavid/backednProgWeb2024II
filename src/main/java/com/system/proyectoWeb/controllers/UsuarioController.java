@@ -5,6 +5,7 @@ import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
 import com.system.proyectoWeb.models.entities.Usuario;
 import com.system.proyectoWeb.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +28,15 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
-        return ResponseEntity.ok(usuarioService.getAllUsuarios());
+    public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
+        List<UsuarioDTO> usuarios = usuarioService.getAllUsuarios();
+
+        if (usuarios.isEmpty()) {
+            // Si no hay produ, respondemos con un 404 o 204 No Content
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
     @PostMapping

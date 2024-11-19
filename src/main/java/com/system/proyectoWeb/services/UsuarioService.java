@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioService implements IUsuarioService {
 
-private UsuarioDAO usuarioDAO;
+    @Autowired
+    private UsuarioDAO usuarioDAO;
     @Override
     public UsuarioDTO getUsuarioById(Integer idUsuario) {
         return (UsuarioDTO) usuarioDAO.obtenerTodos()
