@@ -4,6 +4,8 @@ package com.system.proyectoWeb.controllers;
 import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
 import com.system.proyectoWeb.models.entities.Usuario;
 import com.system.proyectoWeb.services.UsuarioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
+
 
     @GetMapping("/{id}")
     public UsuarioDTO obtenerProducto(@PathVariable int id) {
@@ -40,16 +44,27 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUsuario(@RequestBody Usuario usuario) {
-        usuarioService.createUsuario(usuario);
-        return ResponseEntity.ok("Usuario creado exitosamente.");
+    public ResponseEntity<UsuarioDTO> crearUsuario(@RequestBody UsuarioDTO saveUsuarioDTO) {
+        try {
+            UsuarioDTO usuarioDTO = usuarioService.createUsuario(saveUsuarioDTO);
+            return new ResponseEntity<>(usuarioDTO, HttpStatus.CREATED);
+        } catch (Exception e) {
+            log.error("Error al crear el usuario", e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
-        usuarioService.updateUsuario(id, usuario);
-        return ResponseEntity.ok("Usuario actualizado exitosamente.");
+    public ResponseEntity<String> updateUsuario(@PathVariable Integer id, @RequestBody UsuarioDTO usuario) {
+        try {
+            usuarioService.updateUsuario(id, usuario);
+            return ResponseEntity.ok("Usuario actualizado exitosamente.");
+        } catch (Exception e) {
+            log.error("Error al actualizar el usuario con ID: " + id, e);
+            return new ResponseEntity<>("Error al actualizar el usuario", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUsuario(@PathVariable Integer id) {

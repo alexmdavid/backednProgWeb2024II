@@ -29,6 +29,16 @@ public class Usuario {
     @JoinColumn(name = "idRol")
     private Rol rol;
 
+    public Usuario(String nombre, String apellido, String correo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+    }
+
+    public Usuario() {
+
+    }
+
     // Getters y Setters
 
 
