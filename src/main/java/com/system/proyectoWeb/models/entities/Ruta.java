@@ -1,10 +1,13 @@
 package com.system.proyectoWeb.models.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Setter @Getter
 public class Ruta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +16,7 @@ public class Ruta {
     private String nombreRuta;
     private String descripcion;
 
-    // Relación con RutaLugar
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<RutaLugar> rutaLugares;
 
-    // Getters y Setters
 }

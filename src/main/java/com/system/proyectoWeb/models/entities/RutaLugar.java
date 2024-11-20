@@ -16,5 +16,4 @@ public class RutaLugar {
     @JoinColumn(name = "idLugar")
     private Lugar lugar;
 
-    // Getters y Setters
 }

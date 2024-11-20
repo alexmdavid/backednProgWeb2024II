@@ -27,7 +27,6 @@ import java.time.LocalDate;
             if (usuario == null || torneo == null) {
                 throw new IllegalArgumentException("Usuario o Torneo no encontrado.");
             }
-
             Usuario usuario1 = new Usuario(
                     usuario.getIdUsuario()
             );

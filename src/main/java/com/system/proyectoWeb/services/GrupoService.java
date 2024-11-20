@@ -29,11 +29,10 @@ public class GrupoService {
     }
 
     public GrupoDTO getGrupoById(Integer idGrupo) {
-        Grupo grupo = grupoDAO.obtenerGrupoPorId(idGrupo); // Obtener el usuario por ID
+        Grupo grupo = grupoDAO.obtenerGrupoPorId(idGrupo);
         if (grupo == null) {
-            return null; // Si no se encuentra el usuario, devuelve null
+            return null;
         }
-       // grupoDAO.refresh(grupo);
         return new GrupoDTO(
                 grupo.getIdGrupo(),
                 grupo.getNombre(),

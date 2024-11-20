@@ -18,6 +18,5 @@ public class Lugar {
     @OneToMany(mappedBy = "lugar", cascade = CascadeType.ALL)
     private List<RutaLugar> rutaLugares;
 
-    // Getters y Setters
 }
 

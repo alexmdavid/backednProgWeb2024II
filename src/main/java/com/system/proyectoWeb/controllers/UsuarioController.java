@@ -44,10 +44,8 @@ public class UsuarioController {
         List<UsuarioDTO> usuarios = usuarioService.getAllUsuarios();
 
         if (usuarios.isEmpty()) {
-            // Si no hay produ, respondemos con un 404 o 204 No Content
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
@@ -101,5 +99,16 @@ public class UsuarioController {
         return ResponseEntity.ok("Inscripción exitosa");
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UsuarioDTO usuario) {
+        UsuarioDTO usuario1 = usuarioService.login(usuario.getCorreo(), usuario.getContrasenia());
+        if (usuario1 != null) {
+            String secret = "miClaveSecretaParaJWT";
+            String token = usuario1.getCorreo() + ":" + secret;
+            return ResponseEntity.ok(token);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+        }
+    }
 
 }

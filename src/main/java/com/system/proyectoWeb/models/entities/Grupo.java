@@ -33,7 +33,7 @@ public class Grupo {
     }
 
     public Grupo() {
-        // Constructor vacío requerido por JPA
+
     }
 
     public Grupo(Integer idGrupo, String nombre, String descripcion, String modalidad) {

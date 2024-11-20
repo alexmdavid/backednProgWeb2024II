@@ -16,6 +16,5 @@ public class Patrocinador {
     @OneToMany(mappedBy = "patrocinador", cascade = CascadeType.ALL)
     private List<Torneo> torneos;
 
-    // Getters y Setters
 }
 

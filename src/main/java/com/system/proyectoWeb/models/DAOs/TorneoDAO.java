@@ -27,15 +27,15 @@ public class TorneoDAO implements ITorneoDAO {
 
     @Transactional
     public void refresh(Torneo torneo) {
-        em.refresh(torneo);  // Asegura que la entidad esté sincronizada con la base de datos
+        em.refresh(torneo);
     }
 
     public Torneo guardar(Torneo torneo) {
-        if (torneo.getIdTorneo() == null) { // Si es un nuevo usuario
-            em.persist(torneo);  // Persistir el nuevo usuario
+        if (torneo.getIdTorneo() == null) {
+            em.persist(torneo);
             return torneo;
         } else {
-            return em.merge(torneo);  // Si ya existe, actualizar
+            return em.merge(torneo);
         }
     }
 }

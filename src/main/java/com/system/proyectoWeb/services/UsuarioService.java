@@ -1,6 +1,7 @@
 package com.system.proyectoWeb.services;
 
 
+import com.system.proyectoWeb.models.DAOs.AutencticacionDAO;
 import com.system.proyectoWeb.models.DAOs.UsuarioDAO;
 import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
 import com.system.proyectoWeb.models.entities.Usuario;
@@ -16,11 +17,14 @@ public class UsuarioService implements IUsuarioService {
 
     @Autowired
     private UsuarioDAO usuarioDAO;
+    @Autowired
+    private AutencticacionDAO autencticacionDAO;
+
     @Override
     public UsuarioDTO getUsuarioById(Integer idUsuario) {
-        Usuario usuario = usuarioDAO.obtenerPorId(idUsuario); // Obtener el usuario por ID
+        Usuario usuario = usuarioDAO.obtenerPorId(idUsuario);
         if (usuario == null) {
-            return null; // Si no se encuentra el usuario, devuelve null
+            return null;
         }
         return new UsuarioDTO(
                 usuario.getIdUsuario(),
@@ -33,7 +37,7 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public List<UsuarioDTO> getAllUsuarios() {
-        List<Usuario> usuarios = usuarioDAO.obtenerTodos(); // Obtener todos los usuarios desde el DAO
+        List<Usuario> usuarios = usuarioDAO.obtenerTodos();
         return usuarios.stream()
                 .map(usuario -> new UsuarioDTO(
                         usuario.getIdUsuario(),
@@ -47,12 +51,12 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public UsuarioDTO createUsuario(UsuarioDTO saveUsuario) {
-        if (saveUsuario.getNombre() == null || saveUsuario.getCorreo() == null) {
-            throw new IllegalArgumentException("Nombre y Correo son obligatorios");
+        if (saveUsuario.getNombre() == null || saveUsuario.getCorreo() == null || saveUsuario.getContrasenia() == null) {
+            throw new IllegalArgumentException("Nombre, Correo son obligatorios y contraseña");
         }
-        Usuario usuario = new Usuario(saveUsuario.getNombre(), saveUsuario.getApellido(), saveUsuario.getCorreo());
+        Usuario usuario = new Usuario(saveUsuario.getNombre(), saveUsuario.getApellido(), saveUsuario.getCorreo(), saveUsuario.getContrasenia());
         usuario = usuarioDAO.guardar(usuario);
-        return new UsuarioDTO(usuario.getNombre(), usuario.getApellido(), usuario.getCorreo());
+        return new UsuarioDTO(usuario.getNombre(), usuario.getApellido(), usuario.getCorreo(), usuario.getContrasena());
     }
 
     @Override
@@ -61,7 +65,7 @@ public class UsuarioService implements IUsuarioService {
             throw new IllegalArgumentException("Nombre y Correo son obligatorios");
         }
         Usuario usuario = new Usuario();
-        usuario.setIdUsuario(idUsuario); // Asegurarse de que el idUsuario sea correcto
+        usuario.setIdUsuario(idUsuario);
         usuario.setNombre(saveUsuario.getNombre());
         usuario.setApellido(saveUsuario.getApellido());
         usuario.setCorreo(saveUsuario.getCorreo());
@@ -75,4 +79,17 @@ public class UsuarioService implements IUsuarioService {
         usuarioDAO.eliminar(idUsuario); // Llamada al método del DAO para eliminar el usuario
     }
 
+    public UsuarioDTO login(String correo, String contrasena) {
+        Usuario usuario = autencticacionDAO.login(correo, contrasena);
+        if (usuario != null) {
+            return new UsuarioDTO(
+                    usuario.getIdUsuario(),
+                    usuario.getNombre(),
+                    usuario.getApellido(),
+                    usuario.getCorreo(),
+                    usuario.getContrasena()
+            );
+        }
+        return null;
+    }
 }

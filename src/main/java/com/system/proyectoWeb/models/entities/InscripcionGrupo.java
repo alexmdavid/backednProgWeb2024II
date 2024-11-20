@@ -26,6 +26,5 @@ public class InscripcionGrupo {
     @JoinColumn(name = "fechaInscripcion", nullable = false)
     private LocalDate fechaInscripcion;
 
-    // Getters y Setters
 }
 

@@ -35,6 +35,13 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public Usuario(String nombre, String apellido, String correo, String contrasena) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contrasena = contrasena;
+    }
+
     public Usuario() {
 
     }
@@ -44,14 +51,12 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.rol = new Rol("usuario");
     }
 
     public Usuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-    // Getters y Setters
-
 
     public int getIdUsuario() {
         return idUsuario;

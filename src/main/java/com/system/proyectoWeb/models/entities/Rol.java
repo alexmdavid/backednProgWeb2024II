@@ -11,5 +11,9 @@ public class Rol {
     private String nombre;
     private String descripcion;
 
-    // Getters y Setters
+    public Rol() {
+    }
+
+    public Rol(String rol) {
+    }
 }

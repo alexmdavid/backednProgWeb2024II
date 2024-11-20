@@ -26,10 +26,10 @@ public class GrupoDAO implements IGrupoDAO {
             throw new IllegalArgumentException("El nombre del grupo es obligatorio");
         }
         if (grupo.getIdGrupo() == null) {
-            entityManager.persist(grupo); // Inserta el grupo en la BD
+            entityManager.persist(grupo);
             return grupo;
         } else {
-            return entityManager.merge(grupo); // Actualiza el grupo existente en la BD
+            return entityManager.merge(grupo);
         }
     }
 

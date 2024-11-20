@@ -27,9 +27,9 @@ public class TorneoService {
     }
 
     public TorneoDTO getTorneoById(Integer idTorneo) {
-        Torneo torneo = torneoDAO.obtenerPorId(idTorneo); // Obtener el usuario por ID
+        Torneo torneo = torneoDAO.obtenerPorId(idTorneo);
         if (torneo == null) {
-            return null; // Si no se encuentra el usuario, devuelve null
+            return null;
         }
         torneoDAO.refresh(torneo);
         return new TorneoDTO(

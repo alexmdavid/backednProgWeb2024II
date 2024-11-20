@@ -29,11 +29,11 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public Usuario guardar(Usuario usuario) {
-        if (usuario.getIdUsuario() == 0) { // Si es un nuevo usuario
-            entityManager.persist(usuario);  // Persistir el nuevo usuario
+        if (usuario.getIdUsuario() == 0) {
+            entityManager.persist(usuario);
             return usuario;
         } else {
-            return entityManager.merge(usuario);  // Si ya existe, actualizar
+            return entityManager.merge(usuario);
         }
     }
 
@@ -41,7 +41,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     public void eliminar(int id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
         if (usuario != null) {
-            entityManager.remove(usuario); // Eliminar el usuario de la base de datos
+            entityManager.remove(usuario);
         } else {
             throw new RuntimeException("Usuario con ID " + id + " no encontrado.");
         }

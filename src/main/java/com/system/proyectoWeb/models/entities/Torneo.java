@@ -35,8 +35,5 @@ public class Torneo {
     public Torneo(Integer idTorneo) {
         this.idTorneo = idTorneo;
     }
-
-
-    // Getters y Setters
 }
 

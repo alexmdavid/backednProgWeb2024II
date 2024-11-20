@@ -14,6 +14,6 @@ public interface IAutenticacionDAO {
     // Verificar si el nombre de usuario ya está en uso
     boolean existsByUsername(String nombreUsu);
 
-    // Verificar si el correo electrónico ya está registrado
+
     boolean existsByEmail(String correo);
 }
