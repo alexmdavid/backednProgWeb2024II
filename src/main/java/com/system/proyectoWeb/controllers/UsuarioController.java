@@ -2,7 +2,8 @@ package com.system.proyectoWeb.controllers;
 
 
 import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
-import com.system.proyectoWeb.models.entities.Usuario;
+import com.system.proyectoWeb.models.entities.InscripcionTorneo;
+import com.system.proyectoWeb.services.InscripcionTorneoService;
 import com.system.proyectoWeb.services.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,10 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private InscripcionTorneoService inscripcionService;
     private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
+
 
 
     @GetMapping("/{id}")
@@ -71,4 +75,15 @@ public class UsuarioController {
         usuarioService.deleteUsuario(id);
         return ResponseEntity.ok("Usuario eliminado exitosamente.");
     }
+
+    @PostMapping("/{idUsuario}/torneos/{idTorneo}/inscribir")
+    public ResponseEntity<String> inscribirEnTorneo(
+            @PathVariable Integer idUsuario,
+            @PathVariable Integer idTorneo,
+            @RequestBody InscripcionTorneo inscripcionTorneo
+    ) {
+        inscripcionService.inscribirEnTorneo(idUsuario, idTorneo, inscripcionTorneo);
+        return ResponseEntity.ok("Inscripción exitosa");
+    }
+
 }

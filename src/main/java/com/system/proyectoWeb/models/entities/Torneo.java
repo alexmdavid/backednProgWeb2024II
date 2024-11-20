@@ -1,10 +1,13 @@
 package com.system.proyectoWeb.models.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter @Setter
 public class Torneo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +22,15 @@ public class Torneo {
 
     @OneToMany(mappedBy = "torneo", cascade = CascadeType.ALL)
     private List<InscripcionTorneo> inscripcionesTorneo;
+
+    public Torneo(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public Torneo() {
+
+    }
 
     // Getters y Setters
 }

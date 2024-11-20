@@ -1,10 +1,16 @@
 package com.system.proyectoWeb.models.entities;
 
+import com.system.proyectoWeb.models.entities.Calendario;
+import com.system.proyectoWeb.models.entities.InscripcionGrupo;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Grupo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +26,13 @@ public class Grupo {
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
     private List<Calendario> calendarios;
 
-    // Getters y Setters
+    public Grupo(String nombre, String descripcion, String modalidad) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.modalidad = modalidad;
+    }
+
+    public Grupo() {
+        // Constructor vacío requerido por JPA
+    }
 }

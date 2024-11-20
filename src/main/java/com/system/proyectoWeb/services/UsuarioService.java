@@ -70,20 +70,6 @@ public class UsuarioService implements IUsuarioService {
     }
 
 
-
-
-    private UsuarioDTO convertirAUsuarioDTO(Usuario usuarioActualizado) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-                usuarioActualizado.getIdUsuario(),
-                usuarioActualizado.getNombre(),
-                usuarioActualizado.getApellido(),
-                usuarioActualizado.getCorreo()
-
-        );
-        return usuarioDTO;
-    }
-
-
     @Override
     public void deleteUsuario(Integer idUsuario) {
         usuarioDAO.eliminar(idUsuario); // Llamada al método del DAO para eliminar el usuario
