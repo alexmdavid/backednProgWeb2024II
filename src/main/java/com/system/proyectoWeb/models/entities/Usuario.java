@@ -39,6 +39,17 @@ public class Usuario {
 
     }
 
+    public Usuario(int idUsuario, String nombre, String apellido, String correo) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+    }
+
+    public Usuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     // Getters y Setters
 
 

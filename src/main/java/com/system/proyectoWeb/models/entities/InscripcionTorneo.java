@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Setter @Getter
@@ -13,18 +14,20 @@ public class InscripcionTorneo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idInscripcion;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="idTorneo", nullable = false)
     private Torneo torneo;
 
 
-    @ManyToOne(cascade = CascadeType.PERSIST)  // o CascadeType.ALL si prefieres
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
 
+    @JoinColumn(name = "fechaInscripcion", nullable = false)
+    private LocalDate fechaInscripcion;
 
-    private Date fechaInscripcion;
-
-    public InscripcionTorneo(Torneo torneo, Usuario usuario, Date fechaInscripcion) {
+    public InscripcionTorneo(Torneo torneo, Usuario usuario, LocalDate fechaInscripcion) {
         this.torneo = torneo;
         this.usuario = usuario;
         this.fechaInscripcion = fechaInscripcion;

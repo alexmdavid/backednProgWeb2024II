@@ -11,7 +11,9 @@ import com.system.proyectoWeb.models.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-    @Service
+import java.time.LocalDate;
+
+@Service
     public class InscripcionTorneoService {
         @Autowired
         private InscripcionTorneoDAO inscripcionTorneoDAO;
@@ -27,19 +29,16 @@ import org.springframework.stereotype.Service;
             }
 
             Usuario usuario1 = new Usuario(
-                    usuario.getNombre(),
-                    usuario.getApellido(),
-                    usuario.getCorreo()
+                    usuario.getIdUsuario()
             );
             Torneo torneo1 = new Torneo(
-
-                    torneo.getNombre(),
-                    torneo.getDescripcion()
+                    torneo.getIdTorneo()
             );
-
+            LocalDate fechaHoraActual = LocalDate.now();
             InscripcionTorneo inscripcion = new InscripcionTorneo();
             inscripcion.setUsuario(usuario1);
             inscripcion.setTorneo(torneo1);
+            inscripcion.setFechaInscripcion(fechaHoraActual);
 
             inscripcionTorneoDAO.inscribirseTorneo(inscripcion);
             return true;

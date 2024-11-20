@@ -35,4 +35,15 @@ public class Grupo {
     public Grupo() {
         // Constructor vacío requerido por JPA
     }
+
+    public Grupo(Integer idGrupo, String nombre, String descripcion, String modalidad) {
+        this.idGrupo = idGrupo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.modalidad = modalidad;
+    }
+
+    public Grupo(Integer idGrupo) {
+        this.idGrupo = idGrupo;
+    }
 }
