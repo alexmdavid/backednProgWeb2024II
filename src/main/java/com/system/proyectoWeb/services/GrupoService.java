@@ -2,7 +2,9 @@ package com.system.proyectoWeb.services;
 
 import com.system.proyectoWeb.models.DAOs.GrupoDAO;
 import com.system.proyectoWeb.models.DTOs.GrupoDTO;
+import com.system.proyectoWeb.models.DTOs.TorneoDTO;
 import com.system.proyectoWeb.models.entities.Grupo;
+import com.system.proyectoWeb.models.entities.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,21 @@ public class GrupoService {
         if (saveGrupo.getModalidad() == null || saveGrupo.getModalidad().isBlank()) {
             throw new IllegalArgumentException("La modalidad del grupo es obligatoria.");
         }
-
-
         Grupo grupo = new Grupo(saveGrupo.getNombre(), saveGrupo.getDescripcion(), saveGrupo.getModalidad());
-
-
         grupoDAO.crearGrupo(grupo);
+    }
+
+    public GrupoDTO getGrupoById(Integer idGrupo) {
+        Grupo grupo = grupoDAO.obtenerGrupoPorId(idGrupo); // Obtener el usuario por ID
+        if (grupo == null) {
+            return null; // Si no se encuentra el usuario, devuelve null
+        }
+       // grupoDAO.refresh(grupo);
+        return new GrupoDTO(
+                grupo.getIdGrupo(),
+                grupo.getNombre(),
+                grupo.getDescripcion(),
+                grupo.getModalidad()
+        );
     }
 }

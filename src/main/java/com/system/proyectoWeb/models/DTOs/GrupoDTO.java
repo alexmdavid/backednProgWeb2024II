@@ -16,4 +16,11 @@ public class GrupoDTO {
 
     public GrupoDTO() {
     }
+
+    public GrupoDTO(Integer idGrupo, String nombre, String descripcion, String modalidad) {
+        this.idGrupo = idGrupo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.modalidad = modalidad;
+    }
 }

@@ -3,6 +3,7 @@ package com.system.proyectoWeb.models.DAOs;
 
 import com.system.proyectoWeb.models.DAOs.IDAOs.IGrupoDAO;
 import com.system.proyectoWeb.models.entities.Grupo;
+import com.system.proyectoWeb.models.entities.Torneo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -30,6 +31,10 @@ public class GrupoDAO implements IGrupoDAO {
         } else {
             return entityManager.merge(grupo); // Actualiza el grupo existente en la BD
         }
+    }
+
+    public Grupo obtenerGrupoPorId(Integer idGrupo) {
+        return entityManager.find(Grupo.class, idGrupo);
     }
 
 }

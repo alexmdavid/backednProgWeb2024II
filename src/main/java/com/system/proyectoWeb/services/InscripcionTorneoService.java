@@ -13,20 +13,15 @@ import org.springframework.stereotype.Service;
 
     @Service
     public class InscripcionTorneoService {
-
         @Autowired
         private InscripcionTorneoDAO inscripcionTorneoDAO;
-
         @Autowired
         private UsuarioService usuarioService;
-
         @Autowired
         private TorneoService torneoService;
-
         public boolean inscribirEnTorneo(Integer usuarioId, Integer torneoId, InscripcionTorneo inscripcionTorneo) {
             UsuarioDTO usuario = usuarioService.getUsuarioById(usuarioId);
             TorneoDTO torneo = torneoService.getTorneoById(torneoId);
-
             if (usuario == null || torneo == null) {
                 throw new IllegalArgumentException("Usuario o Torneo no encontrado.");
             }
