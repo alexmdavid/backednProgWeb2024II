@@ -36,7 +36,7 @@ public class TorneoController {
     }
 
     @PostMapping
-    public ResponseEntity<TorneoDTO> crearUsuario(@RequestBody TorneoDTO saveUsuarioDTO) {
+    public ResponseEntity<TorneoDTO> crearTorneo(@RequestBody TorneoDTO saveUsuarioDTO) {
         try {
             TorneoDTO usuarioDTO = torneoService.createTorneo(saveUsuarioDTO);
             return new ResponseEntity<>(usuarioDTO, HttpStatus.CREATED);

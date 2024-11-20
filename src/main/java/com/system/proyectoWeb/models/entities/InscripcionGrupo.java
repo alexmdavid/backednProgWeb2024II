@@ -14,11 +14,11 @@ public class InscripcionGrupo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idInscripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idGrupo")
     private Grupo grupo;
 

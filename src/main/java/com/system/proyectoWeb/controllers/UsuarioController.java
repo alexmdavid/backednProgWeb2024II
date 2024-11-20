@@ -30,7 +30,6 @@ public class UsuarioController {
     private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
 
-
     @GetMapping("/{id}")
     public UsuarioDTO obtenerProducto(@PathVariable int id) {
         UsuarioDTO usuario = usuarioService.getUsuarioById(id);
@@ -91,14 +90,16 @@ public class UsuarioController {
         return ResponseEntity.ok("Inscripción exitosa");
     }
 
-    @PostMapping("/{idUsuario}/grupos/{idGrupo}/inscribir")
+    @PostMapping("/{idUsuario}/grupos/{idGrupo}/ins")
     public ResponseEntity<String> inscribirEnGrupo(
             @PathVariable Integer idUsuario,
             @PathVariable Integer idGrupo,
             @RequestBody InscripcionGrupo inscripcionGrupo
+
     ) {
         inscripcionGrupoService.inscribirEnGrupo(idUsuario, idGrupo, inscripcionGrupo);
         return ResponseEntity.ok("Inscripción exitosa");
     }
+
 
 }
