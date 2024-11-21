@@ -25,7 +25,7 @@ public class Usuario {
     @JoinColumn(name = "idRuta")
     private Ruta ruta;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idRol")
     private Rol rol;
 
@@ -33,6 +33,7 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.rol = new Rol("usuario");
     }
 
     public Usuario(String nombre, String apellido, String correo, String contrasena) {
@@ -40,6 +41,7 @@ public class Usuario {
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.rol = new Rol("usuario");
     }
 
     public Usuario() {

@@ -1,6 +1,7 @@
 package com.system.proyectoWeb.models.DAOs;
 
 import com.system.proyectoWeb.models.DAOs.IDAOs.IUsuarioDAO;
+import com.system.proyectoWeb.models.entities.Rol;
 import com.system.proyectoWeb.models.entities.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

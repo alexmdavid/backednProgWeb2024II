@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 
@@ -101,7 +102,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UsuarioDTO usuario) {
-        UsuarioDTO usuario1 = usuarioService.login(usuario.getCorreo(), usuario.getContrasenia());
+        UsuarioDTO usuario1 = usuarioService.login(usuario.getCorreo(), usuario.getContrasena());
         if (usuario1 != null) {
             String secret = "miClaveSecretaParaJWT";
             String token = usuario1.getCorreo() + ":" + secret;

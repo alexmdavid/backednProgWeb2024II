@@ -51,10 +51,10 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public UsuarioDTO createUsuario(UsuarioDTO saveUsuario) {
-        if (saveUsuario.getNombre() == null || saveUsuario.getCorreo() == null || saveUsuario.getContrasenia() == null) {
+        if (saveUsuario.getNombre() == null || saveUsuario.getCorreo() == null || saveUsuario.getContrasena() == null) {
             throw new IllegalArgumentException("Nombre, Correo son obligatorios y contraseña");
         }
-        Usuario usuario = new Usuario(saveUsuario.getNombre(), saveUsuario.getApellido(), saveUsuario.getCorreo(), saveUsuario.getContrasenia());
+        Usuario usuario = new Usuario(saveUsuario.getNombre(), saveUsuario.getApellido(), saveUsuario.getCorreo(), saveUsuario.getContrasena());
         usuario = usuarioDAO.guardar(usuario);
         return new UsuarioDTO(usuario.getNombre(), usuario.getApellido(), usuario.getCorreo(), usuario.getContrasena());
     }

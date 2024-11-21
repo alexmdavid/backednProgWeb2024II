@@ -13,7 +13,9 @@ public class Rol {
 
     public Rol() {
     }
-
-    public Rol(String rol) {
+    public Rol(String nombre) {
+        this.nombre = nombre;
     }
+
+
 }

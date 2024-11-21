@@ -14,7 +14,7 @@ public class InscripcionTorneo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idInscripcion;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="idTorneo", nullable = false)
     private Torneo torneo;
 

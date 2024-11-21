@@ -9,7 +9,7 @@ public class UsuarioDTO {
     private String nombre;
     private String apellido;
     private String correo;
-    private String contrasenia;
+    private String contrasena;
 
     public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo) {
         this.idUsuario = idUsuario;
@@ -22,7 +22,7 @@ public class UsuarioDTO {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasenia = contrasenia;
+        this.contrasena = contrasenia;
     }
     // Getters and Setters
 
@@ -34,7 +34,7 @@ public class UsuarioDTO {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasenia = contrasenia;
+        this.contrasena = contrasenia;
     }
 
     public int getIdUsuario() {
