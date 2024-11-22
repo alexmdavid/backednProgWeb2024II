@@ -3,10 +3,15 @@ package com.system.proyectoWeb.services;
 import com.system.proyectoWeb.models.DAOs.GrupoDAO;
 import com.system.proyectoWeb.models.DTOs.GrupoDTO;
 import com.system.proyectoWeb.models.DTOs.TorneoDTO;
+import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
 import com.system.proyectoWeb.models.entities.Grupo;
 import com.system.proyectoWeb.models.entities.Torneo;
+import com.system.proyectoWeb.models.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GrupoService {
@@ -40,4 +45,16 @@ public class GrupoService {
                 grupo.getModalidad()
         );
     }
+    public List<GrupoDTO> getAllGrupos() {
+            List<Grupo> grupos = grupoDAO.listarGruoo();
+            return grupos.stream()
+                    .map(grupo -> new GrupoDTO(
+                            grupo.getIdGrupo(),
+                            grupo.getNombre(),
+                            grupo.getDescripcion(),
+                            grupo.getModalidad()
+                    ))
+                    .collect(Collectors.toList());
+    }
 }
+

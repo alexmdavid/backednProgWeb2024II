@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +31,8 @@ public class UsuarioService implements IUsuarioService {
                 usuario.getIdUsuario(),
                 usuario.getNombre(),
                 usuario.getApellido(),
-                usuario.getCorreo()
+                usuario.getCorreo(),
+                usuario.getContrasena()
         );
     }
 
@@ -43,7 +45,8 @@ public class UsuarioService implements IUsuarioService {
                         usuario.getIdUsuario(),
                         usuario.getNombre(),
                         usuario.getApellido(),
-                        usuario.getCorreo()
+                        usuario.getCorreo(),
+                        usuario.getContrasena()
                 ))
                 .collect(Collectors.toList());
     }
@@ -91,5 +94,16 @@ public class UsuarioService implements IUsuarioService {
             );
         }
         return null;
+    }
+
+    public UsuarioDTO obtenerUsuarioPorCorreo(String correo) {
+        Usuario usuario = autencticacionDAO.buscarPorCorreo(correo);
+        return new UsuarioDTO(
+                usuario.getIdUsuario(),
+                usuario.getNombre(),
+                usuario.getApellido(),
+                usuario.getCorreo(),
+                usuario.getContrasena()
+        );
     }
 }

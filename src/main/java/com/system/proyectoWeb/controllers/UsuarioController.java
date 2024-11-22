@@ -89,7 +89,7 @@ public class UsuarioController {
         return ResponseEntity.ok("Inscripción exitosa");
     }
 
-    @PostMapping("/{idUsuario}/grupos/{idGrupo}/ins")
+    @PostMapping("/{idUsuario}/grupos/{idGrupo}/inscribir")
     public ResponseEntity<String> inscribirEnGrupo(
             @PathVariable Integer idUsuario,
             @PathVariable Integer idGrupo,

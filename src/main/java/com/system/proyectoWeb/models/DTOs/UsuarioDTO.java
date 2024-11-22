@@ -11,20 +11,20 @@ public class UsuarioDTO {
     private String correo;
     private String contrasena;
 
-    public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo) {
+    public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo, String contrasena) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.contrasena = contrasena;
     }
 
-    public UsuarioDTO(String nombre, String apellido, String correo, String contrasenia) {
+    public UsuarioDTO(String nombre, String apellido, String correo, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasena = contrasenia;
+        this.contrasena = contrasena;
     }
-    // Getters and Setters
 
     public UsuarioDTO() {
     }
