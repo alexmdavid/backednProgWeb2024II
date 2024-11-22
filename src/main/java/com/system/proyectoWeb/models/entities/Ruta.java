@@ -19,4 +19,18 @@ public class Ruta {
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<RutaLugar> rutaLugares;
 
+    public Ruta( String nombre, String descripcion, List<RutaLugar> rutaLugares) {
+        this.nombreRuta = nombre;
+        this.descripcion = descripcion;
+        this.rutaLugares = rutaLugares;
+    }
+
+    public Ruta() {
+
+    }
+
+    public Ruta(String nombre, String descripcion) {
+        this.nombreRuta = nombre;
+        this.descripcion = descripcion;
+    }
 }
