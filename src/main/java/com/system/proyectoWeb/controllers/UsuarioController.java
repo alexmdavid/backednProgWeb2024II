@@ -101,15 +101,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UsuarioDTO usuario) {
+    public ResponseEntity<UsuarioDTO> login(@RequestBody UsuarioDTO usuario) {
         UsuarioDTO usuario1 = usuarioService.login(usuario.getCorreo(), usuario.getContrasena());
         if (usuario1 != null) {
-            String secret = "miClaveSecretaParaJWT";
-            String token = usuario1.getCorreo() + ":" + secret;
-            return ResponseEntity.ok(token);
+            // Devuelve el usuario sin información sensible
+            usuario1.setContrasena(null);
+            return ResponseEntity.ok(usuario1);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
-
 }

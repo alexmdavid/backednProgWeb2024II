@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.List;
 
 import static jakarta.persistence.FetchType.EAGER;
 
@@ -22,9 +23,11 @@ public class Usuario {
     private String correo;
     private String contrasena;
 
-    @ManyToOne
-    @JoinColumn(name = "idGrupo")
-    private Grupo grupo;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InscripcionGrupo> inscripcionesG;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InscripcionTorneo> inscripcionesT;
 
     @ManyToOne
     @JoinColumn(name = "idRuta")

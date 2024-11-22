@@ -3,6 +3,8 @@ package com.system.proyectoWeb.models.DTOs;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter @Setter
 public class UsuarioDTO {
     private int idUsuario;
@@ -10,6 +12,9 @@ public class UsuarioDTO {
     private String apellido;
     private String correo;
     private String contrasena;
+    private String sexo;
+    private String fechaNacimiento;
+    private String tipoDeSangre;
 
     public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo, String contrasena) {
         this.idUsuario = idUsuario;
@@ -29,43 +34,15 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(int idUsuario, String nombre, String apellido, String correo, String contrasenia) {
+    public UsuarioDTO(int idUsuario, String nombre, String apellido, String correo, String contrasenia, String ts, String sexo, String fe) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasenia;
+        this.tipoDeSangre = ts;
+        this.fechaNacimiento = fe;
+        this.sexo = sexo;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
 }

@@ -56,6 +56,9 @@ public class UsuarioDAO implements IUsuarioDAO {
             usuarioExistente.setNombre(usuario.getNombre());
             usuarioExistente.setApellido(usuario.getApellido());
             usuarioExistente.setCorreo(usuario.getCorreo());
+            usuarioExistente.setTipoDeSangre(usuario.getTipoDeSangre());
+            usuarioExistente.setFechaNacimiento(usuario.getFechaNacimiento());
+            usuarioExistente.setSexo(usuario.getSexo());
             return usuarioExistente;
         } else {
             throw new RuntimeException("Usuario con ID " + usuario.getIdUsuario() + " no encontrado.");

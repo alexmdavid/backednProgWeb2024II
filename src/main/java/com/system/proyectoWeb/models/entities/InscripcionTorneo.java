@@ -14,13 +14,13 @@ public class InscripcionTorneo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idInscripcion;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="idTorneo", nullable = false)
     private Torneo torneo;
 
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false) // usuario_id será la clave foránea
     private Usuario usuario;
 
 

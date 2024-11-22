@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 @RequestMapping("/api/torneos")
 public class TorneoController {
     @Autowired
@@ -26,12 +27,9 @@ public class TorneoController {
     @GetMapping
     public ResponseEntity<List<TorneoDTO>> listarTorneos() {
         List<TorneoDTO> torneos = torneoService.obtenerTorneos();
-
         if (torneos.isEmpty()) {
-            // Si no hay produ, respondemos con un 404 o 204 No Content
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(torneos, HttpStatus.OK);
     }
 

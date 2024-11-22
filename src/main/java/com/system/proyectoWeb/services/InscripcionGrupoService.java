@@ -35,5 +35,8 @@ public class InscripcionGrupoService {
         inscripcionGrupoDAO.inscribirseEnGrupo(inscripcion);
         return true;
     }
+    public void eliminarEnGrupo( InscripcionGrupo inscripcionGrupo) {
+        inscripcionGrupoDAO.eliminarInnscripcionGrupo(inscripcionGrupo);
+    }
 
 }

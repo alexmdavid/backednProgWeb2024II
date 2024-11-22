@@ -15,12 +15,12 @@ public class InscripcionGrupo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idInscripcion;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false) // usuario_id será la clave foránea
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idGrupo", nullable = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "idGrupo")
     private Grupo grupo;
 
     @JoinColumn(name = "fechaInscripcion", nullable = false)

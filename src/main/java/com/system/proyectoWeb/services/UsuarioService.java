@@ -9,6 +9,9 @@ import com.system.proyectoWeb.services.IServices.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -67,19 +70,36 @@ public class UsuarioService implements IUsuarioService {
         if (saveUsuario.getNombre() == null || saveUsuario.getCorreo() == null) {
             throw new IllegalArgumentException("Nombre y Correo son obligatorios");
         }
+
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);
         usuario.setNombre(saveUsuario.getNombre());
         usuario.setApellido(saveUsuario.getApellido());
         usuario.setCorreo(saveUsuario.getCorreo());
+        usuario.setSexo(saveUsuario.getSexo());
+        usuario.setTipoDeSangre(saveUsuario.getTipoDeSangre());
+
+
+        String fechaNacimientoStr = saveUsuario.getFechaNacimiento();
+        if (fechaNacimientoStr != null && !fechaNacimientoStr.isEmpty()) {
+            try {
+                LocalDate fecha = LocalDate.parse(fechaNacimientoStr);
+                usuario.setFechaNacimiento(Date.valueOf(fecha));
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Formato de fecha inválido: " + fechaNacimientoStr);
+            }
+        } else {
+            usuario.setFechaNacimiento(null);
+        }
 
         usuarioDAO.actulizar(usuario);
     }
 
 
+
     @Override
     public void deleteUsuario(Integer idUsuario) {
-        usuarioDAO.eliminar(idUsuario); // Llamada al método del DAO para eliminar el usuario
+        usuarioDAO.eliminar(idUsuario);
     }
 
     public UsuarioDTO login(String correo, String contrasena) {

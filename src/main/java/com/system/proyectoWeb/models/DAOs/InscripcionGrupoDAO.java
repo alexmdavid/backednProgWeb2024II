@@ -12,6 +12,9 @@ public class InscripcionGrupoDAO {
     @Autowired
     private EntityManager em;
 
+    public void eliminarInnscripcionGrupo(InscripcionGrupo grupo) {
+        em.remove(grupo);
+    }
     public void inscribirseEnGrupo(InscripcionGrupo inscripcion) {
         em.persist(inscripcion);
     }
