@@ -33,7 +33,7 @@ public class Usuario {
     @JoinColumn(name = "idRuta")
     private Ruta ruta;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idRol")
     private Rol rol;
 

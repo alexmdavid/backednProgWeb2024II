@@ -22,10 +22,13 @@ public class RutaDAO {
         em.refresh(ruta);
     }
 
-    public Ruta guardarRuta(Ruta ruta) {
-        if(ruta.getIdRuta()==null){em.persist(ruta); return ruta;}
-        else{return em.merge(ruta);}
-
+    public Ruta guardar(Ruta ruta) {
+        if (ruta.getIdRuta() == null) {
+            em.persist(ruta);
+            return ruta;
+        } else {
+            return em.merge(ruta);
+        }
     }
 
     public List<Ruta> buscarRutasPorNombre(String nombre) {

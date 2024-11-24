@@ -41,13 +41,12 @@ public class RutaSerivice {
         ).collect(Collectors.toList());
     }
 
-    public RutaDTO crearRuta(RutaDTO rutaDTO) {
-        if (rutaDTO.getNombreRuta() == null || rutaDTO.getNombreRuta().trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre de la ruta es obligatorio");
+    public RutaDTO guardarRuta(RutaDTO saveRuta) {
+        if (saveRuta.getNombreRuta() == null ) {
+            throw new IllegalArgumentException("Nombre  obligatorio");
         }
-
-        Ruta ruta = new Ruta(rutaDTO.getNombreRuta(), rutaDTO.getDescripcion());
-        ruta = rutaDAO.guardarRuta(ruta);
+        Ruta ruta = new Ruta(saveRuta.getNombreRuta(), saveRuta.getDescripcion());
+        ruta = rutaDAO.guardar(ruta);
         return new RutaDTO(ruta.getNombreRuta(), ruta.getDescripcion());
     }
 

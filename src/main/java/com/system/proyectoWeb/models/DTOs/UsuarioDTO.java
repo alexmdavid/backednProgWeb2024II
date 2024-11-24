@@ -1,5 +1,6 @@
 package com.system.proyectoWeb.models.DTOs;
 
+import com.system.proyectoWeb.models.entities.Rol;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,8 @@ public class UsuarioDTO {
     private String sexo;
     private String fechaNacimiento;
     private String tipoDeSangre;
+    private Rol rol;
+
 
     public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo, String contrasena) {
         this.idUsuario = idUsuario;
@@ -45,4 +48,12 @@ public class UsuarioDTO {
         this.sexo = sexo;
     }
 
+    public UsuarioDTO(int idUsuario, String nombre, String apellido, String correo, String contrasena, Rol rol) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.rol = rol;
+    }
 }

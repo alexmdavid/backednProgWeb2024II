@@ -104,7 +104,6 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> login(@RequestBody UsuarioDTO usuario) {
         UsuarioDTO usuario1 = usuarioService.login(usuario.getCorreo(), usuario.getContrasena());
         if (usuario1 != null) {
-            // Devuelve el usuario sin información sensible
             usuario1.setContrasena(null);
             return ResponseEntity.ok(usuario1);
         } else {

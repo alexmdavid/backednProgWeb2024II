@@ -41,12 +41,12 @@ public class RutaController {
         return new ResponseEntity<>(rutas, HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<RutaDTO> crearRuta(RutaDTO rutaDTO) {
+    public ResponseEntity<RutaDTO> guardarRuta(@RequestBody RutaDTO saveRutaDTO) {
         try {
-            RutaDTO rutaDTO1 = rutaSerivice.crearRuta(rutaDTO);
-            return new ResponseEntity<>(rutaDTO1, HttpStatus.CREATED);
+            RutaDTO rutaDTO = rutaSerivice.guardarRuta(saveRutaDTO);
+            return new ResponseEntity<>(rutaDTO, HttpStatus.CREATED);
         } catch (Exception e) {
-            log.error("Error al crear la ruta", e);
+            log.error("Error al crear el usuario", e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

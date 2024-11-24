@@ -2,8 +2,10 @@ package com.system.proyectoWeb.services;
 
 
 import com.system.proyectoWeb.models.DAOs.AutencticacionDAO;
+import com.system.proyectoWeb.models.DAOs.IDAOs.IRolDAO;
 import com.system.proyectoWeb.models.DAOs.UsuarioDAO;
 import com.system.proyectoWeb.models.DTOs.UsuarioDTO;
+import com.system.proyectoWeb.models.entities.Rol;
 import com.system.proyectoWeb.models.entities.Usuario;
 import com.system.proyectoWeb.services.IServices.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class UsuarioService implements IUsuarioService {
     private UsuarioDAO usuarioDAO;
     @Autowired
     private AutencticacionDAO autencticacionDAO;
+    @Autowired
+    private IRolDAO rolDAO;
 
     @Override
     public UsuarioDTO getUsuarioById(Integer idUsuario) {
@@ -61,6 +65,8 @@ public class UsuarioService implements IUsuarioService {
             throw new IllegalArgumentException("Nombre, Correo son obligatorios y contraseña");
         }
         Usuario usuario = new Usuario(saveUsuario.getNombre(), saveUsuario.getApellido(), saveUsuario.getCorreo(), saveUsuario.getContrasena());
+        Rol rol = rolDAO.findByNombre("usuario");
+        usuario.setRol(rol);
         usuario = usuarioDAO.guardar(usuario);
         return new UsuarioDTO(usuario.getNombre(), usuario.getApellido(), usuario.getCorreo(), usuario.getContrasena());
     }
@@ -110,7 +116,9 @@ public class UsuarioService implements IUsuarioService {
                     usuario.getNombre(),
                     usuario.getApellido(),
                     usuario.getCorreo(),
-                    usuario.getContrasena()
+                    usuario.getContrasena(),
+                    usuario.getRol()
+
             );
         }
         return null;
